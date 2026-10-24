@@ -122,8 +122,9 @@
     /* Floating WhatsApp Button */
     .whatsapp-float {
       position: fixed;
-      bottom: 30px;
+      top: 50%;
       right: 30px;
+      transform: translateY(-50%);
       z-index: 1000;
       width: 60px;
       height: 60px;
@@ -182,8 +183,9 @@
 
     @media (max-width: 768px) {
       .whatsapp-float {
-        bottom: 20px;
+        top: 50%;
         right: 20px;
+        transform: translateY(-50%);
         width: 56px;
         height: 56px;
       }
