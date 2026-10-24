@@ -118,6 +118,85 @@
       cursor: zoom-in;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+
+    /* Floating WhatsApp Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+
+    .whatsapp-float-tooltip {
+      position: absolute;
+      right: 70px;
+      background: #fff;
+      color: #333;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      transform: translateX(10px);
+    }
+
+    .whatsapp-float:hover .whatsapp-float-tooltip {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      }
+      50% {
+        box-shadow: 0 4px 30px rgba(37, 211, 102, 0.7);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+        width: 56px;
+        height: 56px;
+      }
+      
+      .whatsapp-float svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .whatsapp-float-tooltip {
+        display: none;
+      }
+    }
     
     .catalog-image:hover {
       transform: scale(1.05);
@@ -990,6 +1069,17 @@
     <span class="image-lightbox-close" onclick="closeLightbox(event)">&times;</span>
     <img id="lightboxImage" src="" alt="Preview">
   </div>
+
+  <!-- Floating WhatsApp Button -->
+  <a href="https://wa.me/6285176913138?text=Halo%20DINAR%20Fotocopy%2C%20saya%20ingin%20bertanya%20tentang%20layanan%20fotocopy%20dan%20ATK" 
+     target="_blank" 
+     class="whatsapp-float" 
+     aria-label="Chat WhatsApp">
+    <span class="whatsapp-float-tooltip">Chat WhatsApp</span>
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 8.15-2.137c2.366 1.237 5.010 1.887 7.85 1.887 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.25c-2.444 0-4.817-0.662-6.912-1.912l-0.512-0.3-5.044 1.325 1.35-5.019-0.331-0.531c-1.381-2.194-2.113-4.731-2.113-7.325 0-7.45 6.05-13.5 13.5-13.5s13.5 6.05 13.5 13.5-6.05 13.5-13.5 13.5zM23.019 19.444c-0.387-0.194-2.294-1.131-2.65-1.262-0.356-0.131-0.619-0.194-0.875 0.194s-1.006 1.262-1.231 1.525c-0.225 0.262-0.45 0.294-0.837 0.1s-1.631-0.6-3.106-1.919c-1.15-1.025-1.925-2.294-2.15-2.681s-0.025-0.6 0.169-0.794c0.175-0.169 0.387-0.444 0.581-0.669 0.194-0.225 0.262-0.387 0.387-0.65 0.131-0.262 0.069-0.487-0.031-0.681s-0.875-2.1-1.2-2.875c-0.319-0.756-0.644-0.65-0.875-0.662-0.225-0.012-0.487-0.012-0.75-0.012s-0.681 0.1-1.044 0.487c-0.356 0.387-1.369 1.331-1.369 3.244s1.4 3.762 1.594 4.019c0.194 0.262 2.738 4.181 6.631 5.862 0.925 0.4 1.65 0.637 2.213 0.819 0.931 0.294 1.781 0.256 2.45 0.15 0.75-0.113 2.294-0.938 2.619-1.844s0.325-1.681 0.225-1.844c-0.094-0.169-0.356-0.262-0.744-0.456z"/>
+    </svg>
+  </a>
 
   <script src="app.js"></script>
   <script src="enhanced-features.js"></script>
