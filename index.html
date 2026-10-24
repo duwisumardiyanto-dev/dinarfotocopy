@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html class="dark" lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>DINAR Fotocopy & Digital Printing</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-dim": "#0d1322",
+            "surface-bright": "#333949",
+            "surface-container-lowest": "#080e1c",
+            "surface-container-low": "#151b2a",
+            "surface-container": "#191f2f",
+            "surface-container-high": "#242a39",
+            "surface-container-highest": "#2f3445",
+            "on-surface": "#dde2f7",
+            "on-surface-variant": "#c0c7d4",
+            "outline": "#8a919e",
+            "outline-variant": "#414752",
+            "background": "#0d1322",
+            "on-background": "#dde2f7",
+            "primary": "#a4c9ff",
+            "on-primary": "#00315d",
+            "primary-container": "#0078d7",
+            "on-primary-container": "#000510",
+            "secondary": "#7ada95",
+            "on-secondary": "#00391a",
+            "secondary-container": "#00753b",
+            "on-secondary-container": "#98f9b0",
+            "tertiary": "#ffb5a0",
+            "on-tertiary": "#601500",
+            "tertiary-container": "#db3d04",
+            "on-tertiary-container": "#120100",
+            "error": "#ffb4ab",
+            "on-error": "#690005",
+            "surface": "#0d1322"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Logo Clear & Sharp Rendering */
+    .logo-sharp {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: high-quality;
+      -webkit-font-smoothing: subpixel-antialiased;
+      -moz-osx-font-smoothing: auto;
+      filter: contrast(1.05) brightness(1.02) saturate(1.1);
+      transform: translateZ(0);
+    }
+
+    /* Image Lightbox Modal */
+    .image-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(10px);
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .image-lightbox.active {
+      display: flex;
+    }
+    
+    .image-lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      animation: zoomIn 0.3s ease;
+    }
+    
+    .image-lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 40px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    
+    .image-lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: rotate(90deg);
+    }
+    
+    .catalog-image {
+      cursor: zoom-in;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .catalog-image:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes zoomIn {
+      from { 
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to { 
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Hero Background Animation */
+    @keyframes zoomOut {
+      from {
+        transform: scale(1.2);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .hero-bg-image {
+      animation: zoomOut 20s ease-out infinite alternate;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-background font-sans min-h-screen">
+  
+  <!-- Header -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.4)]">
+    <div class="h-20 w-full px-6 lg:px-12 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <!-- Logo DINAR - menggunakan logo asli -->
+        <img src="logo-dinar.jpg" 
+             alt="DINAR Logo" 
+             class="h-20 w-auto object-contain logo-sharp">
+        
+        <!-- Tagline -->
+        <div class="hidden md:flex flex-col">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-primary">Fotocopy & ATK</span>
+          <span class="text-[10px] text-on-surface-variant">Pelayanan Ramah</span>
+        </div>
+      </div>
+      
+      <nav class="hidden lg:flex items-center gap-1">
+        <a class="px-4 py-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-sm" href="#beranda">Beranda</a>
+        <a class="px-4 py-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-sm" href="#harga">Daftar Harga</a>
+        <a class="px-4 py-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-sm" href="#kalkulator">Kalkulator</a>
+        <a class="px-4 py-2 text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all text-sm" href="#upload">Upload File</a>
+      </nav>
+      
+      <div class="flex items-center gap-4">
+        <a class="hidden md:flex bg-secondary-container hover:bg-secondary text-on-secondary-container hover:text-on-secondary px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-all items-center gap-2" href="https://wa.me/6285176913138" target="_blank">
+          <span class="material-symbols-outlined text-[18px]">chat</span>
+          <span>WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-20 bg-background min-h-screen">
+    
+    <!-- Status Ticker -->
+    <section class="w-full bg-surface-container-lowest text-on-surface-variant py-2 shadow-inner" id="beranda">
+      <div class="w-full px-6 lg:px-12 flex flex-wrap items-center justify-between gap-2 text-[11px] uppercase tracking-wider">
+        <div class="flex items-center gap-4">
+          <span class="inline-flex items-center gap-1.5 text-secondary">
+            <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            Buka 24 Jam Non-Stop • Layanan Cepat & Ramah
+          </span>
+        </div>
+        <div class="flex items-center gap-2 text-primary">
+          <span class="material-symbols-outlined text-[15px]">home</span>
+          <span>DINAR Fotocopy • Harga Terjangkau</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="relative w-full overflow-hidden">
+      <!-- Background Image with Zoom Out Animation - Fullscreen -->
+      <div class="absolute inset-0 w-full h-full overflow-hidden">
+        <div class="hero-bg-image absolute inset-0 bg-cover bg-center" 
+             style="background-image: url('hero-bg.jpg'); transform-origin: center;">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-background/60 via-background/50 to-background/70"></div>
+      </div>
+
+      <!-- Content with higher z-index -->
+      <div class="relative z-10 w-full px-6 lg:px-12 py-12 lg:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="flex flex-col gap-6">
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-primary text-on-primary text-[11px] uppercase px-2 py-1 font-bold tracking-widest">
+              DINAR Fotocopy
+            </span>
+            <span class="bg-surface-container-high text-secondary text-[11px] uppercase px-2 py-1 font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">home</span> Pelayanan Ramah
+            </span>
+          </div>
+          
+          <h1 class="text-5xl lg:text-6xl font-extrabold text-on-surface uppercase tracking-tight leading-tight">
+            DINAR Fotocopy <span class="text-primary underline decoration-primary-container decoration-4 underline-offset-8">& ATK</span>
+          </h1>
+          
+          <p class="text-base text-on-surface-variant max-w-2xl leading-relaxed">
+            Layanan fotocopy, print, dan scan untuk kebutuhan sehari-hari dengan harga terjangkau. Kami juga menyediakan berbagai perlengkapan ATK (Alat Tulis Kantor) lengkap untuk kebutuhan Anda.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <div class="bg-surface-container p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2 text-secondary text-lg font-bold">
+                <span class="material-symbols-outlined text-[20px]">payments</span>
+                <span>Hemat</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant uppercase">Harga Terjangkau</p>
+            </div>
+            <div class="bg-surface-container p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2 text-primary text-lg font-bold">
+                <span class="material-symbols-outlined text-[20px]">home</span>
+                <span>Dekat</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant uppercase">Lokasi Strategis</p>
+            </div>
+            <div class="bg-surface-container p-3 flex flex-col gap-1">
+              <div class="flex items-center gap-2 text-tertiary text-lg font-bold">
+                <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+                <span>Lengkap</span>
+              </div>
+              <p class="text-[11px] text-on-surface-variant uppercase">ATK Tersedia</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-4">
+            <a class="bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary px-6 py-3 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2" href="#harga">
+              <span>Lihat Daftar Harga</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+            </a>
+            <a class="bg-secondary-container hover:bg-secondary text-on-secondary-container hover:text-on-secondary px-6 py-3 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2" href="#upload">
+              <span class="material-symbols-outlined text-[20px]">upload_file</span>
+              <span>Upload File Sekarang</span>
+            </a>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-2">
+          <!-- Google Maps: Lokasi Toko -->
+          <div class="col-span-2 relative h-56 bg-surface-container overflow-hidden group">
+            <!-- Google Maps Embed -->
+            <iframe 
+              src="https://maps.google.com/maps?q=-6.1438080,106.7409066&hl=id&z=17&output=embed"
+              width="100%" 
+              height="100%" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              class="w-full h-full">
+            </iframe>
+            <!-- Overlay Info -->
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent p-4 flex flex-col justify-end pointer-events-none">
+              <span class="bg-primary-container text-on-primary-container text-xs uppercase px-2 py-1 w-max mb-2 font-bold">Lokasi Kami</span>
+              <p class="text-lg font-bold text-on-surface drop-shadow-lg">DINAR Fotocopy</p>
+              <p class="text-xs text-on-surface-variant drop-shadow-md">Klik peta untuk buka Google Maps</p>
+            </div>
+          </div>
+          
+          <div class="bg-tertiary-container text-on-tertiary-container p-6 flex flex-col justify-between h-44">
+            <div class="flex items-center justify-between">
+              <span class="material-symbols-outlined text-[26px]">print</span>
+              <span class="text-[11px] uppercase font-bold bg-on-tertiary-container/20 px-2 py-0.5">Printer Epson</span>
+            </div>
+            <div>
+              <p class="text-lg font-bold leading-tight mt-1">Printer Epson Original</p>
+              <p class="text-[11px] opacity-90">Print berkualitas dengan tinta infus</p>
+            </div>
+          </div>
+          
+          <div class="relative h-44 bg-surface-container overflow-hidden group">
+            <img src="https://images.unsplash.com/photo-1578926288207-a90a5366759d?w=400&h=300&fit=crop" alt="ATK Lengkap" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest to-transparent p-3 flex flex-col justify-end">
+              <p class="text-base font-bold text-on-surface">ATK Lengkap</p>
+              <p class="text-xs text-on-surface-variant">Pulpen, buku & lainnya</p>
+            </div>
+          </div>
+          
+          <div class="bg-primary-container text-on-primary-container p-4 flex flex-col justify-between h-44">
+            <div class="flex items-center justify-between">
+              <span class="material-symbols-outlined text-[26px]">schedule</span>
+              <span class="text-[11px] uppercase font-bold bg-primary/30 px-2 py-0.5">24 Jam</span>
+            </div>
+            <div>
+              <p class="text-lg font-bold leading-tight mt-1">Buka 24 Jam</p>
+              <p class="text-[11px] opacity-90">Non-Stop Setiap Hari</p>
+            </div>
+          </div>
+          
+          <div class="bg-primary-container text-on-primary-container p-4 flex flex-col justify-between h-44">
+            <div class="flex items-center justify-between">
+              <span class="material-symbols-outlined text-[26px]">description</span>
+              <span class="text-[11px] uppercase font-bold bg-primary/30 px-2 py-0.5">Jilid</span>
+            </div>
+            <div>
+              <p class="text-lg font-bold leading-tight mt-1">Jilid & Cetak Foto</p>
+              <p class="text-[11px] opacity-90">Hasil rapi & berkualitas</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+
+    <!-- Daftar Harga Section -->
+    <section class="w-full bg-surface-container-low py-12" id="harga">
+      <div class="w-full px-6 lg:px-12">
+        <div class="flex flex-col gap-2 mb-8">
+          <span class="text-[11px] uppercase tracking-widest text-primary font-bold">Daftar Harga & Layanan</span>
+          <h2 class="text-3xl lg:text-4xl text-on-surface uppercase tracking-tight font-bold">Fotocopy, Print & ATK</h2>
+        </div>
+        
+        <!-- Filter Tabs -->
+        <div class="flex flex-wrap items-center gap-1 bg-surface-container p-1 mb-6">
+          <button class="filter-tab px-4 py-2 text-xs uppercase font-bold bg-primary text-on-primary transition-all" data-category="all">
+            Semua
+          </button>
+          <button class="filter-tab px-4 py-2 text-xs uppercase font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="fotocopy">
+            Fotocopy & Print
+          </button>
+          <button class="filter-tab px-4 py-2 text-xs uppercase font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="atk">
+            ATK
+          </button>
+          <button class="filter-tab px-4 py-2 text-xs uppercase font-semibold text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" data-category="jilid">
+            Jilid & Cetak Foto
+          </button>
+        </div>
+        
+        <!-- Price Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" id="price-grid">
+          <!-- Fotocopy B/W -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="fotocopy">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden relative">
+                <img src="foto-fotocopy-bw.jpg" alt="Hasil Fotocopy Hitam Putih" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+                <div class="absolute top-2 left-2 bg-secondary-container text-on-secondary-container px-2 py-1 text-xs uppercase font-bold">
+                  Populer
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Fotocopy Hitam Putih</h3>
+                <p class="text-sm text-on-surface-variant mt-1">HVS</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>Per lembar:</span> <strong class="text-on-surface">Rp 500</strong></span>
+                <span class="flex justify-between"><span>Ukuran:</span> <strong class="text-secondary">A4 / F4</strong></span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Fotocopy Hitam Putih', 500)">
+              Pilih Layanan
+            </button>
+          </div>
+          
+          <!-- Print Warna -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="fotocopy">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden relative">
+                <img src="foto-print-warna.jpg" alt="Print Warna Cerah" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+                <div class="absolute top-2 left-2 bg-primary-container text-on-primary-container px-2 py-1 text-xs uppercase font-bold">
+                  Printer Epson
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Print Warna</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Printer Epson</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>HVS A4:</span> <strong class="text-on-surface">Rp 2.000</strong></span>
+                <span class="flex justify-between"><span>HVS F4:</span> <strong class="text-on-surface">Rp 2.500</strong></span>
+                <span class="flex justify-between"><span>Kertas Foto:</span> <strong class="text-secondary">Rp 8.000</strong></span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Print Warna', 2000)">
+              Pilih Layanan
+            </button>
+          </div>
+          
+          <!-- Jilid Lakban -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="jilid">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden">
+                <img src="foto-jilid-lakban.jpg" alt="Jilid Lakban dengan Cover Mika" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Jilid Lakban</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Cover mika transparan</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>Buku Kecil:</span> <strong class="text-on-surface">Rp 3.500</strong></span>
+                <span class="flex justify-between"><span>Buku Besar:</span> <strong class="text-secondary">Rp 4.000</strong></span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Jilid Lakban', 3500)">
+              Pilih Layanan
+            </button>
+          </div>
+          
+          <!-- Cetak Foto -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="fotocopy">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden">
+                <img src="foto-cetak-foto.jpg" alt="Cetak Pas Foto Profesional" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Cetak Foto</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Pas foto & ukuran foto</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>2x3/3x4/4x6:</span> <strong class="text-on-surface">Rp 5.000</strong></span>
+                <span class="flex justify-between"><span>10R:</span> <strong class="text-secondary">Rp 9.000</strong></span>
+                <span class="text-[10px] text-tertiary">✓ Free Ganti Background</span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Cetak Foto', 5000)">
+              Pilih Layanan
+            </button>
+          </div>
+          
+          <!-- ATK: Pulpen -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="atk">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden">
+                <img src="foto-pulpen.jpg" alt="Pulpen & Pensil Berkualitas" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Pulpen & Pensil</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Berbagai merk tersedia</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>Pulpen Gel:</span> <strong class="text-on-surface">Rp 3.000</strong></span>
+                <span class="flex justify-between"><span>Pensil:</span> <strong class="text-on-surface">Rp 2.000</strong></span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Pulpen', 3000)">
+              Lihat Detail
+            </button>
+          </div>
+          
+          <!-- ATK: Buku Tulis Custom -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="atk">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden relative">
+                <img src="foto-buku-custom.jpg" alt="Buku Tulis Custom Design" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+                <div class="absolute top-2 left-2 bg-tertiary-container text-on-tertiary-container px-2 py-1 text-xs uppercase font-bold">
+                  Custom
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Buku Tulis Custom</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Design sesuai keinginan</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>30 Lembar:</span> <strong class="text-secondary">Rp 8.000</strong></span>
+                <span class="text-[10px] text-tertiary">✓ Custom Cover & Isi</span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Buku Tulis Custom', 8000)">
+              Lihat Detail
+            </button>
+          </div>
+          
+          <!-- Kalender Custom -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="atk">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden relative">
+                <img src="foto-kalender-custom.jpg" alt="Kalender Custom dengan Foto" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+                <div class="absolute top-2 left-2 bg-tertiary-container text-on-tertiary-container px-2 py-1 text-xs uppercase font-bold">
+                  Custom
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Kalender Custom</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Desain foto sendiri</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>Kalender Kulkas:</span> <strong class="text-on-surface">Rp 20.000</strong></span>
+                <span class="flex justify-between"><span>Kalender Duduk:</span> <strong class="text-secondary">Rp 20.000</strong></span>
+                <span class="text-[10px] text-tertiary">✓ Glossy / Doff</span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Kalender Custom', 20000)">
+              Lihat Detail
+            </button>
+          </div>
+          
+          <!-- Gantungan Kunci Custom -->
+          <div class="price-item bg-surface-container p-6 flex flex-col justify-between" data-category="atk">
+            <div class="flex flex-col gap-4">
+              <!-- Product Image -->
+              <div class="w-full h-40 bg-surface-container-high overflow-hidden relative">
+                <img src="foto-gantungan-kunci.jpg" alt="Gantungan Kunci Acrylic Custom" class="w-full h-full object-cover catalog-image" onclick="openLightbox(this.src, this.alt)">
+                <div class="absolute top-2 left-2 bg-tertiary-container text-on-tertiary-container px-2 py-1 text-xs uppercase font-bold">
+                  Custom
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-on-surface uppercase">Gantungan Kunci Custom</h3>
+                <p class="text-sm text-on-surface-variant mt-1">Acrylic / Gantungan Tas</p>
+              </div>
+              <div class="bg-surface-container-low p-3 flex flex-col gap-2 text-xs text-on-surface-variant uppercase">
+                <span class="flex justify-between"><span>Harga:</span> <strong class="text-secondary">Rp 5.000</strong></span>
+                <span class="text-[10px] text-tertiary">✓ Design Foto/Gambar Sendiri</span>
+              </div>
+            </div>
+            <button class="mt-4 w-full bg-surface-bright hover:bg-primary-container text-on-surface hover:text-on-primary-container text-center py-2 text-xs uppercase tracking-wider font-bold transition-all" onclick="selectService('Gantungan Kunci Custom', 5000)">
+              Lihat Detail
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Kalkulator Harga Section -->
+    <section class="w-full px-6 lg:px-12 py-12" id="kalkulator">
+      <div class="flex flex-col gap-2 mb-8">
+        <span class="text-[11px] uppercase tracking-widest text-secondary font-bold">Estimasi Biaya Real-time</span>
+        <h2 class="text-3xl lg:text-4xl text-on-surface uppercase tracking-tight font-bold">Kalkulator Harga Cetak</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Kalkulator Form -->
+        <div class="lg:col-span-2 bg-surface-container p-6 space-y-6">
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Jenis Layanan</label>
+            <select id="calc-service" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm focus:border-primary focus:outline-none">
+              <option value="500">Fotocopy Hitam Putih (Rp 500/lembar)</option>
+              <option value="2000">Print Warna HVS A4 (Rp 2.000/lembar)</option>
+              <option value="2500">Print Warna HVS F4 (Rp 2.500/lembar)</option>
+              <option value="8000">Print Kertas Foto (Rp 8.000/lembar)</option>
+              <option value="3500">Jilid Lakban Buku Kecil (Rp 3.500/eks)</option>
+              <option value="4000">Jilid Lakban Buku Besar (Rp 4.000/eks)</option>
+              <option value="5000">Cetak Pas Foto 2x3/3x4/4x6 (Rp 5.000)</option>
+              <option value="9000">Cetak Foto 10R (Rp 9.000 - Free Ganti BG)</option>
+            </select>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Ukuran Kertas</label>
+              <select id="calc-size" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm focus:border-primary focus:outline-none">
+                <option value="1">A4 (21 x 29.7 cm)</option>
+                <option value="1.25">F4 (21.5 x 33 cm)</option>
+              </select>
+            </div>
+            
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Jenis Kertas</label>
+              <select id="calc-paper" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm focus:border-primary focus:outline-none">
+                <option value="1">HVS</option>
+                <option value="4">Kertas Foto</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Jumlah Halaman</label>
+              <input type="number" id="calc-pages" value="10" min="1" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm focus:border-primary focus:outline-none"/>
+            </div>
+            
+            <div>
+              <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Jumlah Salinan</label>
+              <input type="number" id="calc-copies" value="1" min="1" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm focus:border-primary focus:outline-none"/>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="calc-duplex" class="w-5 h-5 bg-surface-container-high border-2 border-outline-variant checked:bg-primary checked:border-primary"/>
+              <span class="text-sm text-on-surface">Cetak Bolak-Balik (Duplex)</span>
+            </label>
+          </div>
+          
+          <button onclick="calculatePrice()" class="w-full bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary py-3 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">calculate</span>
+            <span>Hitung Total Biaya</span>
+          </button>
+        </div>
+        
+        <!-- Hasil Estimasi -->
+        <div class="bg-surface-container-high p-6 flex flex-col gap-6">
+          <div>
+            <span class="text-xs uppercase tracking-wider font-bold text-on-surface-variant">Estimasi Total</span>
+            <div class="text-5xl font-extrabold text-primary mt-2" id="calc-result">Rp 0</div>
+            <p class="text-xs text-on-surface-variant mt-2 uppercase">*Harga dapat berubah setelah file diperiksa</p>
+          </div>
+          
+          <div class="bg-surface-container p-4 space-y-2 text-sm">
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Layanan:</span>
+              <span id="detail-service" class="text-on-surface">-</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Halaman:</span>
+              <span id="detail-pages" class="text-on-surface">-</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Salinan:</span>
+              <span id="detail-copies" class="text-on-surface">-</span>
+            </div>
+            <div class="flex justify-between text-on-surface-variant">
+              <span>Total Lembar:</span>
+              <span id="detail-total" class="text-secondary font-bold">-</span>
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <div class="bg-secondary-container/20 border border-secondary-container p-3">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-secondary text-[20px]">info</span>
+                <p class="text-xs text-on-surface">Diskon volume otomatis diterapkan untuk pesanan >100 lembar</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Upload File Section -->
+    <section class="w-full bg-surface-container-low py-12" id="upload">
+      <div class="w-full px-6 lg:px-12">
+        <div class="flex flex-col gap-2 mb-8">
+          <span class="text-[11px] uppercase tracking-widest text-primary font-bold">Fase 1: Upload File Cetak</span>
+          <h2 class="text-3xl lg:text-4xl text-on-surface uppercase tracking-tight font-bold">Kirim File untuk Dicetak</h2>
+          <p class="text-sm text-on-surface-variant mt-2">Upload file PDF, DOCX, JPG, atau PNG. Maksimal 25 MB per file, 10 file per pesanan.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Upload Zone -->
+          <div class="lg:col-span-2 space-y-6">
+            <div class="bg-surface-container border-2 border-dashed border-primary p-12 text-center" id="drop-zone">
+              <div class="flex flex-col items-center gap-4">
+                <div class="w-20 h-20 bg-primary-container text-on-primary-container flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[40px]">cloud_upload</span>
+                </div>
+                <div>
+                  <p class="text-lg font-bold text-on-surface">Drag & Drop File di Sini</p>
+                  <p class="text-sm text-on-surface-variant mt-1">atau klik tombol di bawah untuk memilih file</p>
+                </div>
+                <input type="file" id="file-input" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" class="hidden"/>
+                <button onclick="document.getElementById('file-input').click()" class="bg-primary-container hover:bg-primary text-on-primary-container hover:text-on-primary px-6 py-3 text-xs font-bold uppercase tracking-wider transition-all">
+                  Pilih File dari Komputer
+                </button>
+                <div class="flex flex-wrap gap-2 justify-center text-xs text-on-surface-variant">
+                  <span class="bg-surface-container-high px-2 py-1">PDF</span>
+                  <span class="bg-surface-container-high px-2 py-1">DOCX</span>
+                  <span class="bg-surface-container-high px-2 py-1">DOC</span>
+                  <span class="bg-surface-container-high px-2 py-1">JPG</span>
+                  <span class="bg-surface-container-high px-2 py-1">PNG</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- File List -->
+            <div id="file-list" class="space-y-2"></div>
+            
+            <!-- Opsi Cetak -->
+            <div id="print-options" class="bg-surface-container p-6 space-y-6 hidden">
+              <h3 class="text-lg font-bold text-on-surface uppercase">Opsi Cetak</h3>
+              
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Warna Cetak</label>
+                  <select id="print-color" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm">
+                    <option value="bw">Hitam Putih (B/W)</option>
+                    <option value="color">Full Color</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Ukuran Kertas</label>
+                  <select id="print-size" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm">
+                    <option value="a4">A4 (21 x 29.7 cm)</option>
+                    <option value="f4">F4 (21.5 x 33 cm)</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Jenis Kertas</label>
+                  <select id="print-paper" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm">
+                    <option value="hvs">HVS</option>
+                    <option value="foto">Kertas Foto</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Jumlah Salinan</label>
+                  <input type="number" id="print-copies" value="1" min="1" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm"/>
+                </div>
+              </div>
+              
+              <div class="space-y-3">
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="print-duplex" class="w-5 h-5 bg-surface-container-high border-2 border-outline-variant checked:bg-primary"/>
+                  <span class="text-sm text-on-surface">Cetak Bolak-Balik (Duplex) — Hemat kertas</span>
+                </label>
+                
+                <label class="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="print-binding" class="w-5 h-5 bg-surface-container-high border-2 border-outline-variant checked:bg-primary"/>
+                  <span class="text-sm text-on-surface">Tambah Jilid (pilih jenis di bawah)</span>
+                </label>
+                
+                <div id="binding-options" class="ml-7 hidden">
+                  <select id="binding-type" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-2 text-sm">
+                    <option value="3500">Jilid Lakban Buku Kecil (Rp 3.500)</option>
+                    <option value="4000">Jilid Lakban Buku Besar (Rp 4.000)</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div>
+                <label class="block text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-2">Catatan Khusus (Opsional)</label>
+                <textarea id="print-notes" rows="3" placeholder="Contoh: Halaman 1-5 warna, sisanya hitam putih" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm"></textarea>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Order Summary -->
+          <div class="bg-surface-container p-6 flex flex-col gap-6 h-fit sticky top-24">
+            <div>
+              <span class="text-xs uppercase tracking-wider font-bold text-on-surface-variant">Ringkasan Pesanan</span>
+              <div class="text-4xl font-extrabold text-primary mt-2" id="order-total">Rp 0</div>
+              <p class="text-xs text-on-surface-variant mt-1">*Estimasi awal</p>
+            </div>
+            
+            <div class="space-y-2 text-sm">
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">File:</span>
+                <span id="order-files" class="text-on-surface font-bold">0 file</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Total Halaman:</span>
+                <span id="order-pages" class="text-on-surface font-bold">0</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Status:</span>
+                <span id="order-status" class="text-outline">Belum ada file</span>
+              </div>
+            </div>
+            
+            <div class="border-t border-outline-variant pt-4">
+              <h4 class="text-xs uppercase tracking-wider font-bold text-on-surface-variant mb-3">Informasi Kontak</h4>
+              <div class="space-y-3">
+                <input type="text" id="order-name" placeholder="Nama Lengkap" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm" required/>
+                <input type="tel" id="order-phone" placeholder="Nomor WhatsApp" class="w-full bg-surface-container-high border border-outline-variant text-on-surface p-3 text-sm" required/>
+              </div>
+            </div>
+            
+            <button id="submit-order" onclick="submitOrder()" disabled class="w-full bg-surface-container-high text-outline py-3 text-xs font-bold uppercase tracking-wider cursor-not-allowed">
+              Kirim Pesanan
+            </button>
+            
+            <div class="bg-primary-container/20 border border-primary-container p-3">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-primary text-[16px]">schedule</span>
+                <p class="text-xs text-on-surface"><strong>Estimasi:</strong> Pesanan Anda akan diproses dalam 12-20 menit setelah file diterima</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="w-full px-6 lg:px-12 py-12">
+      <div class="flex flex-col gap-2 mb-8">
+        <span class="text-[11px] uppercase tracking-widest text-secondary font-bold">Testimoni Pelanggan</span>
+        <h2 class="text-3xl lg:text-4xl text-on-surface uppercase tracking-tight font-bold">Apa Kata Mereka?</h2>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-surface-container p-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg">
+              R
+            </div>
+            <div>
+              <p class="font-bold text-on-surface">Rudi Hartono</p>
+              <p class="text-xs text-on-surface-variant">Tetangga</p>
+            </div>
+          </div>
+          <p class="text-sm text-on-surface-variant italic">"Dekat dari rumah, harga murah, pemiliknya ramah. Sering fotocopy di sini untuk urusan kantor."</p>
+          <div class="flex gap-1">
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+          </div>
+        </div>
+        
+        <div class="bg-surface-container p-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-bold text-lg">
+              S
+            </div>
+            <div>
+              <p class="font-bold text-on-surface">Siti Aminah</p>
+              <p class="text-xs text-on-surface-variant">Ibu Rumah Tangga</p>
+            </div>
+          </div>
+          <p class="text-sm text-on-surface-variant italic">"Butuh pulpen tiba-tiba tengah malam, untung DINAR buka 24 jam. ATK nya lengkap!"</p>
+          <div class="flex gap-1">
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+          </div>
+        </div>
+        
+        <div class="bg-surface-container p-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center font-bold text-lg">
+              B
+            </div>
+            <div>
+              <p class="font-bold text-on-surface">Budi Santoso</p>
+              <p class="text-xs text-on-surface-variant">Mahasiswa</p>
+            </div>
+          </div>
+          <p class="text-sm text-on-surface-variant italic">"Print tugas kuliah di sini murah dan cepat. Bisa kirim file lewat WA, praktis banget!"</p>
+          <div class="flex gap-1">
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+            <span class="material-symbols-outlined text-[16px] text-tertiary">star</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="w-full bg-surface-container-low py-12">
+      <div class="max-w-4xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col gap-2 mb-8">
+          <span class="text-[11px] uppercase tracking-widest text-primary font-bold">Pertanyaan Umum</span>
+          <h2 class="text-3xl lg:text-4xl text-on-surface uppercase tracking-tight font-bold">FAQ</h2>
+        </div>
+        
+        <div class="space-y-3">
+          <details class="bg-surface-container p-4 group">
+            <summary class="font-bold text-on-surface cursor-pointer list-none flex items-center justify-between">
+              <span>Berapa lama waktu pengerjaan?</span>
+              <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 pl-4">Untuk fotocopy atau print biasa, biasanya 10-20 menit tergantung jumlah. Untuk jilid tambahan 10-15 menit. Kami usahakan secepat mungkin!</p>
+          </details>
+          
+          <details class="bg-surface-container p-4 group">
+            <summary class="font-bold text-on-surface cursor-pointer list-none flex items-center justify-between">
+              <span>Apakah bisa kirim file lewat WhatsApp?</span>
+              <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 pl-4">Bisa! Kirim saja file PDF, Word, atau gambar ke nomor WhatsApp kami. Setelah itu kami akan proses dan bisa diambil atau diantar (area sekitar).</p>
+          </details>
+          
+          <details class="bg-surface-container p-4 group">
+            <summary class="font-bold text-on-surface cursor-pointer list-none flex items-center justify-between">
+              <span>ATK apa saja yang tersedia?</span>
+              <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 pl-4">Kami menyediakan pulpen, pensil, penghapus, buku tulis custom, kalender custom, lem, tipex, spidol, penggaris, dan perlengkapan ATK lainnya dengan harga terjangkau.</p>
+          </details>
+          
+          <details class="bg-surface-container p-4 group">
+            <summary class="font-bold text-on-surface cursor-pointer list-none flex items-center justify-between">
+              <span>Bagaimana cara pembayaran?</span>
+              <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 pl-4">Pembayaran bisa cash saat pengambilan, atau transfer (BCA, GoPay, OVO, DANA). Untuk pesanan online, konfirmasi dulu lewat WhatsApp ya!</p>
+          </details>
+          
+          <details class="bg-surface-container p-4 group">
+            <summary class="font-bold text-on-surface cursor-pointer list-none flex items-center justify-between">
+              <span>Jam buka berapa?</span>
+              <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 pl-4">Kami buka 24 jam non-stop setiap hari, termasuk hari libur nasional. Anda bisa datang kapan saja atau hubungi WhatsApp kami untuk pemesanan.</p>
+          </details>
+          
+          <details class="bg-surface-container p-4 group">
+            <summary class="font-bold text-on-surface cursor-pointer list-none flex items-center justify-between">
+              <span>Apakah ada layanan antar?</span>
+              <span class="material-symbols-outlined text-outline group-open:rotate-180 transition-transform">expand_more</span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 pl-4">Untuk area sekitar rumah, kami bisa antar dengan biaya tambahan sesuai jarak. Hubungi kami via WhatsApp untuk detail.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="w-full bg-surface-container-lowest py-12 mt-12">
+      <div class="w-full px-6 lg:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <div class="flex items-center gap-2 mb-4">
+              <!-- Logo DINAR Original (Footer) -->
+              <img src="logo-dinar.jpg" alt="DINAR Logo" class="h-16 w-auto object-contain logo-sharp">
+            </div>
+            <p class="text-sm text-on-surface-variant">DINAR Fotocopy melayani kebutuhan print, fotocopy, scan, jilid, cetak foto, dan penjualan ATK dengan harga terjangkau.</p>
+          </div>
+          
+          <div>
+            <h4 class="text-xs uppercase tracking-wider font-bold text-on-surface mb-3">Kontak</h4>
+            <div class="space-y-2 text-sm text-on-surface-variant">
+              <p class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">call</span>
+                <span>0851-7691-3138</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">email</span>
+                <span class="text-xs">dinarapriliani9@gmail.com</span>
+              </p>
+              <p class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">schedule</span>
+                <span>24 Jam Non-Stop</span>
+              </p>
+            </div>
+          </div>
+          
+          <div>
+            <h4 class="text-xs uppercase tracking-wider font-bold text-on-surface mb-3">Menu Cepat</h4>
+            <div class="space-y-2 text-sm">
+              <a href="#harga" class="block text-on-surface-variant hover:text-primary transition-colors">Daftar Harga</a>
+              <a href="#kalkulator" class="block text-on-surface-variant hover:text-primary transition-colors">Kalkulator</a>
+              <a href="#upload" class="block text-on-surface-variant hover:text-primary transition-colors">Upload File</a>
+              <a href="https://wa.me/6285176913138" target="_blank" class="block text-on-surface-variant hover:text-primary transition-colors">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="border-t border-outline-variant mt-8 pt-8 text-center text-xs text-on-surface-variant">
+          <p>&copy; 2026 DINAR Fotocopy. All rights reserved. Built with Metro Design System.</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Image Lightbox Modal -->
+  <div id="imageLightbox" class="image-lightbox" onclick="closeLightbox(event)">
+    <span class="image-lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img id="lightboxImage" src="" alt="Preview">
+  </div>
+
+  <script src="app.js"></script>
+  <script src="enhanced-features.js"></script>
+</body>
+</html>

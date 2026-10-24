@@ -1,0 +1,26 @@
+{
+  "name": "dinar-fotocopy-web-app",
+  "version": "1.1.0",
+  "description": "Web app untuk layanan fotocopy dan digital printing DINAR",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve -l 3000",
+    "dev": "npx serve -l 3000",
+    "serve": "npx serve -l 3000",
+    "server": "npx serve -l 3000",
+    "open": "start http://localhost:3000"
+  },
+  "keywords": [
+    "fotocopy",
+    "digital-printing",
+    "web-app",
+    "metro-design"
+  ],
+  "author": "DINAR Fotocopy",
+  "license": "PROPRIETARY",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dinar/fotocopy-web-app"
+  }
+}

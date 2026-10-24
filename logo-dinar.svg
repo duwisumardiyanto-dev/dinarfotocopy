@@ -1,0 +1,19 @@
+<svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="120" height="80" fill="#1a3a3a"/>
+  
+  <!-- D Letter -->
+  <path d="M20 20 L20 60 L35 60 C45 60 50 55 50 40 C50 25 45 20 35 20 L20 20 Z M25 25 L35 25 C42 25 45 28 45 40 C45 52 42 55 35 55 L25 55 L25 25 Z" fill="white"/>
+  
+  <!-- N Letter with cut for magnifying glass -->
+  <path d="M55 20 L55 60 L60 60 L60 32 L75 60 L80 60 L80 20 L75 20 L75 48 L60 20 L55 20 Z" fill="white"/>
+  
+  <!-- Magnifying Glass Circle (Gold) -->
+  <circle cx="70" cy="42" r="8" fill="none" stroke="#d4af37" stroke-width="2"/>
+  
+  <!-- Magnifying Glass Handle (Gold) -->
+  <line x1="76" y1="48" x2="82" y2="54" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round"/>
+  
+  <!-- DINAR Text Below -->
+  <text x="20" y="72" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">DINAR</text>
+</svg>
